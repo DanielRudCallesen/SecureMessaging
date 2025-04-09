@@ -49,3 +49,10 @@ The application implements end-to-end encryption, ensuring that messages can onl
      Username: bob
      Password: password123
      ```
+5. Known Bugs
+   - Bug 1:
+   - Currently if you have logged in on both users, decide to logout with both.
+   - Login again on user1, you will see that user2 is still "logged in" which it is not.
+   - It will throw an error if you click on user2.
+   - Bug 2:
+   - Source Map Error even though the URL is correct.
