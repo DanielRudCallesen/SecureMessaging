@@ -13,6 +13,14 @@ User sessions are not persistent
 No message history is stored
 
 
+## Pictures of the application
+![{769FD090-A5BC-4677-83FE-EE3F9F9D23B3}](https://github.com/user-attachments/assets/d88b4c36-42f9-43cb-96b2-edbad5417f37)
+
+
+![{CD8A5843-25A2-489C-A699-D6B7E8F6D501}](https://github.com/user-attachments/assets/7fa873ae-6bc4-4518-8afb-fc0c5b41ee4d)
+
+
+
 ## Getting Started
 
 1. Clone the repository:
