@@ -99,3 +99,5 @@ No message history is stored
    - When a user disconnects, it doesn't say that a user has disconnected.
    - You wouldn't be able to send messages to that user again.
    - It occurs an error
+   - Bug 4: 
+   - Is able to login with a user that is currently logged in. 

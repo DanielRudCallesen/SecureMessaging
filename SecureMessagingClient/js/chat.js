@@ -20,19 +20,7 @@ class ChatService {
                 })
                 .withAutomaticReconnect()
                 .build();
-
-
-            this.connection.on("UserDisconnected", (username) => {
-                if (this.onUserListUpdate) {
-                    this.onUserListUpdate(); 
-                }
-            });
-
-            this.connection.on("UserConnected", (username) => {
-                if (this.onUserListUpdate) {
-                    this.onUserListUpdate();
-                }
-            });
+                
             this.connection.on('ReceiveMessage', async (sender, encryptedMessage, iv, hmac) => {
                 try {
                     
