@@ -45,7 +45,12 @@ No message history is stored
      Username: bob
      Password: password123
      ```
-5. Waitlist:
+
+5. Chat with the other user:
+   - Click on the user on the left panel.
+   - Start chatting with yourself!
+
+5.1. Waitlist (If no user shown):
    - When succusfully logged in wait 15 seconds for the user list to update.
 
 
