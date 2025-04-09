@@ -33,3 +33,4 @@ C:\Users\Danie\SecureMessaging\SecureMessagingServer\obj\Debug\net6.0\refint\Sec
 C:\Users\Danie\SecureMessaging\SecureMessagingServer\obj\Debug\net6.0\SecureMessagingServer.pdb
 C:\Users\Danie\SecureMessaging\SecureMessagingServer\obj\Debug\net6.0\SecureMessagingServer.genruntimeconfig.cache
 C:\Users\Danie\SecureMessaging\SecureMessagingServer\obj\Debug\net6.0\ref\SecureMessagingServer.dll
+C:\Users\Danie\SecureMessaging\SecureMessagingServer\obj\Debug\net6.0\SecureMessagingServer.sourcelink.json
