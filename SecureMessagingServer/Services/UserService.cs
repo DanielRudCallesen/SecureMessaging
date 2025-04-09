@@ -28,6 +28,28 @@ namespace SecureMessagingServer.Services
             return hashedPassword == user.PasswordHash;
         }
 
+        public bool RegisterUser(string username, string password)
+        {
+            if (_users.Any(u => u.Username == username))
+            {
+                return false;
+            }
+
+            var salt = GenerateSalt();
+            
+            var passwordHash = HashPassword(password, salt);
+
+            var user = new User
+            {
+                Username = username,
+                PasswordHash = passwordHash,
+                Salt = salt
+            };
+
+            _users.Add(user);
+            return true;
+        }
+
         public User? GetUserByUsername(string username)
         {
             return _users.FirstOrDefault(u => u.Username == username);

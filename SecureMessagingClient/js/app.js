@@ -18,88 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message-input');
     const sendBtn = document.getElementById('send-btn');
 
-    // Set up event handlers for authentication
-    loginBtn.addEventListener('click', handleLogin);
-    logoutBtn.addEventListener('click', handleLogout);
-    sendBtn.addEventListener('click', handleSendMessage);
-    messageInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            handleSendMessage();
-        }
-    });
+    let userListInterval;
 
-
-    chatService.onMessageReceived = (sender, message) => {
-        if (sender === chatService.activeRecipient) {
-            displayMessages(chatService.getMessagesForUser(sender));
-        }
-    };
-
-    chatService.onUserSelected = (username, messages) => {
-        displayMessages(messages);
-        recipientHeader.innerHTML = `<h2>Chat with ${username}</h2>`;
-        messageInput.disabled = false;
-        sendBtn.disabled = false;
-    };
-
-
-    async function handleLogin() {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        if (!username || !password) {
-            showError('Username and password are required');
-            return;
-        }
-
-        try {
-            loginError.textContent = '';
-            await authService.login(username, password);
-
-            await cryptoService.init();
-            await chatService.initConnection();
-            
-            await loadUsers();
-            showChatUI();
-            
-        } 
-        catch (error) {
-            showError(error.message || 'Login failed');
-        }
-    }
-
-    async function handleLogout() {
-        try {
-            chatService.disconnect();
-            await authService.logout();
-            
-            showLoginUI();
-        } 
-        catch (error) {
-            console.error('Logout error:', error);
-        }
-    }
-
-
-    async function handleSendMessage() {
-        const message = messageInput.value.trim();
-        if (!message) return;
-
-        try {
-            await chatService.sendMessage(message);
-            messageInput.value = '';
-            
-            displayMessages(chatService.getMessagesForUser(chatService.activeRecipient));
-        } 
-        catch (error) {
-            console.error('Send message error:', error);
-            alert('Failed to send message: ' + error.message);
-        }
-    }
-
-
-    async function loadUsers() {
+    async function refreshUsersList() {
         try {
             const users = await authService.getUsers();
             const currentUser = authService.getCurrentUser();
@@ -128,6 +49,91 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function startUserListRefresh() {
+        refreshUsersList();
+        
+        userListInterval = setInterval(refreshUsersList, 15000);
+    }
+
+    function stopUserListRefresh() {
+        if (userListInterval) {
+            clearInterval(userListInterval);
+            userListInterval = null;
+        }
+    }
+    loginBtn.addEventListener('click', handleLogin);
+    logoutBtn.addEventListener('click', handleLogout);
+    sendBtn.addEventListener('click', handleSendMessage);
+    messageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    });
+
+    chatService.onMessageReceived = (sender, message) => {
+        if (sender === chatService.activeRecipient) {
+            displayMessages(chatService.getMessagesForUser(sender));
+        }
+    };
+
+    chatService.onUserSelected = (username, messages) => {
+        displayMessages(messages);
+        recipientHeader.innerHTML = `<h2>Chat with ${username}</h2>`;
+        messageInput.disabled = false;
+        sendBtn.disabled = false;
+    };
+
+    chatService.onUserListUpdate = refreshUsersList;
+
+    async function handleLogin() {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (!username || !password) {
+            showError('Username and password are required');
+            return;
+        }
+
+        try {
+            loginError.textContent = '';
+            await authService.login(username, password);
+            
+            await cryptoService.init();
+            await chatService.initConnection();
+            
+            startUserListRefresh();
+            showChatUI();
+        } catch (error) {
+            showError(error.message || 'Login failed');
+        }
+    }
+
+    async function handleLogout() {
+        try {
+            stopUserListRefresh();
+            chatService.disconnect();
+            await authService.logout();
+            showLoginUI();
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    }
+
+    async function handleSendMessage() {
+        const message = messageInput.value.trim();
+        if (!message) return;
+
+        try {
+            await chatService.sendMessage(message);
+            messageInput.value = '';
+            
+            displayMessages(chatService.getMessagesForUser(chatService.activeRecipient));
+        } catch (error) {
+            console.error('Send message error:', error);
+            alert('Failed to send message: ' + error.message);
+        }
+    }
 
     function displayMessages(messages) {
         chatMessages.innerHTML = '';
@@ -152,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-
     function showError(message, type = 'error') {
         loginError.textContent = message;
         loginError.style.color = type === 'success' ? '#16a085' : '#e74c3c';
@@ -165,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         passwordInput.value = '';
         loginError.textContent = '';
     }
-
 
     function showChatUI() {
         loginContainer.classList.add('hidden');

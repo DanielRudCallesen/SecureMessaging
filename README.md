@@ -45,6 +45,8 @@ No message history is stored
      Username: bob
      Password: password123
      ```
+5. Waitlist:
+   - When succusfully logged in wait 15 seconds for the user list to update.
 
 
 ## Features
@@ -74,9 +76,13 @@ No message history is stored
 
    
 5. Known Bugs
-   - Bug 1:
+   - Bug 1: (FIXED NEW BUG ARRVIED -> Bug 3)
    - Currently if you have logged in on both users, decide to logout with both.
    - Login again on user1, you will see that user2 is still "logged in" which it is not.
    - It will throw an error if you click on user2.
-   - Bug 2:
+   - Bug 2: (No idea how to fix)
    - Source Map Error even though the URL is correct.
+   - Bug 3: (Not gonna fix)
+   - When a user disconnects, it doesn't say that a user has disconnected.
+   - You wouldn't be able to send messages to that user again.
+   - It occurs an error

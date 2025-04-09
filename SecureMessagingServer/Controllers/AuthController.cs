@@ -61,8 +61,12 @@ namespace SecureMessagingServer.Controllers
         [HttpGet("users")]
         public IActionResult GetUsers()
         {
-            var usernames = _userService.GetAllUsernames();
-            return Ok(usernames);
+            var usernames = _userService.GetAllUsernames()
+        .Where(username => {
+            var user = _userService.GetUserByUsername(username);
+            return user != null && !string.IsNullOrEmpty(user.ConnectionId);
+        });
+    return Ok(usernames);
         }
     }
 

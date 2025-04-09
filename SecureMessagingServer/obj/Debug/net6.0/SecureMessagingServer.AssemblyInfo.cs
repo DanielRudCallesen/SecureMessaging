@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SecureMessagingServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5443b21e4fa79bcaa5383ee20079b3c737d718e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b45968ae8ba0be5622645cb4ed4dfc0a563f6ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("SecureMessagingServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SecureMessagingServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

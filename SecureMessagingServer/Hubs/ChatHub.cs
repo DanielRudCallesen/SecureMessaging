@@ -22,6 +22,7 @@ namespace SecureMessagingServer.Hubs
                 {
                     user.ConnectionId = Context.ConnectionId;
                 }
+                await Clients.Others.SendAsync("UserConnected", username);
             }
             await base.OnConnectedAsync();
         }
@@ -38,6 +39,7 @@ namespace SecureMessagingServer.Hubs
                 }
                 // Notify other users that the user has disconnected
                 // Is missing, cba to do. 
+                await Clients.Others.SendAsync("UserDisconnected", username);
             }
             await base.OnDisconnectedAsync(exception);
         }
@@ -80,6 +82,7 @@ namespace SecureMessagingServer.Hubs
             {
                 throw new HubException("Recipient not found or not online");
             }
+
 
             await Clients.Client(recipientUser.ConnectionId).SendAsync(
                 "ReceivePublicKey",
