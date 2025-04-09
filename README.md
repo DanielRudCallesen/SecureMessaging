@@ -3,19 +3,10 @@
 A real-time secure messaging application built with ASP.NET Core and JavaScript. 
 The application implements end-to-end encryption, ensuring that messages can only be read by the intended recipients.
 
-## Features
-
-- Real-time messaging using SignalR
-- End-to-end encryption using AES-256
-- Secure key exchange using Diffie-Hellman
-- Message integrity verification using HMAC
-- Simple user authentication (Users stored in a list rather than Database) 
-
-- All messages are encrypted/decrypted client-side
-- Server never sees decrypted message content
-- Secure key exchange between users
-- Message integrity verification
-- Protection against message tampering
+This is a demonstration project
+The authentication system is basic
+User sessions are not persistent
+No message history is stored
 
 ## Getting Started
 
@@ -49,6 +40,34 @@ The application implements end-to-end encryption, ensuring that messages can onl
      Username: bob
      Password: password123
      ```
+
+
+## Features
+
+- Real-time messaging using SignalR
+- End-to-end encryption using AES-256
+- Secure key exchange using Diffie-Hellman
+- Message integrity verification using HMAC
+- Simple user authentication (Users stored in a list rather than Database) 
+
+- All messages are encrypted/decrypted client-side
+- Server never sees decrypted message content
+- Secure key exchange between users
+- Message integrity verification
+- Protection against message tampering
+
+## How it works
+
+1. Users authenticate with the server
+2. When a chat is initiated:
+   - A secure key exchange is performed using Diffie-Hellman
+   - A shared secret is established between the users
+   - Messages are encrypted using AES-256 before transmission
+   - Messages are verified using HMAC for integrity
+3. The server acts only as a message relay
+4. All cryptographic operations happen client-side
+
+   
 5. Known Bugs
    - Bug 1:
    - Currently if you have logged in on both users, decide to logout with both.
