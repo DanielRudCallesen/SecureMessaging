@@ -1,12 +1,17 @@
 # Secure Messaging Application
 
--A real-time secure messaging application built with ASP.NET Core and JavaScript. 
--The application implements end-to-end encryption, ensuring that messages can only be read by the intended recipients.
+A real-time secure messaging application built with ASP.NET Core and JavaScript. 
 
--This is a demonstration project
--The authentication system is basic
--User sessions are not persistent
--No message history is stored
+The application implements end-to-end encryption, ensuring that messages can only be read by the intended recipients.
+
+This is a demonstration project
+
+The authentication system is basic
+
+User sessions are not persistent
+
+No message history is stored
+
 
 ## Getting Started
 
