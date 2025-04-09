@@ -1,6 +1,6 @@
 # Secure Messaging Application
 
-A real-time secure messaging application built with ASP.NET Core and JavaScript. 
+A real-time secure messaging application built with ASP.NET Core and JavaScript with the use for SignalR. 
 
 The application implements end-to-end encryption, ensuring that messages can only be read by the intended recipients.
 
