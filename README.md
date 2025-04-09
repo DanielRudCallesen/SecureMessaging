@@ -22,7 +22,6 @@ The application implements end-to-end encryption, ensuring that messages can onl
 1. Clone the repository:
    ```bash
    git clone https://github.com/DanielRudCallesen/SecureMessaging
-   cd secure-messaging
    ```
 
 2. Start the server:
