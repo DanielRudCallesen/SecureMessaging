@@ -6,7 +6,7 @@ The application implements end-to-end encryption, ensuring that messages can onl
 
 This is a demonstration project
 
-The authentication system is basic
+The authentication system is basic --- Login information is stored in a list rather than Database for simplicity. Real world application should involve a database connection with hashing and salting of passwords. 
 
 User sessions are not persistent
 
