@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "/fL7aU63AbXfX4V2NLBVnC0JBtQzraku8KrAgvKBWug=",
+  "Source": "SecureMessagingServer",
+  "BasePath": "_content/SecureMessagingServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
